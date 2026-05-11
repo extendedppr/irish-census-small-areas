@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "irish-census"
+version = "0.0.1"
+description = "Interact with the Irish census data for small areas"
+authors = ["ExtendedPPR <extendedppr@gmail.com>"]
+readme = "README.md"
+packages = [{include="irish_census", from="src"}]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+requests = "2.33.1"
+progressbar2 = "4.5.0"
+orjson = "3.11.8"
+shapely = "2.1.2"
+pyproj = "3.7.1"
+cached_property = "2.0.1"
+ijson = "3.5.0"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.2.0"
+mock = "5.2.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+download = "scripts.download:main"
+get_stats_around_area = "scripts.get_stats_around_area:main"

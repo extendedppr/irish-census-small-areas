@@ -23,15 +23,15 @@ class Demographics(Base):
 
     @property
     def total_population(self):
-        return self.total_by_sex('both')
+        return self.total_by_sex("both")
 
     @property
     def male_population(self):
-        return self.total_by_sex('male')
+        return self.total_by_sex("male")
 
     @property
     def female_population(self):
-        return self.total_by_sex('female')
+        return self.total_by_sex("female")
 
     @property
     def approx_mean_age(self):

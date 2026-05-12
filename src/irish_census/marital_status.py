@@ -13,4 +13,4 @@ class MaritalStatus(Base):
     dimension = "C03739V04488"
 
     def _parse(self, values):
-        return parse_gender(values, self.dimension)
+        return parse_gender(values, self.dimension, reverse=False)

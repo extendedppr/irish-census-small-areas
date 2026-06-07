@@ -16,7 +16,7 @@ from irish_census.settings import (
 def convert(obj):
     if isinstance(obj, Decimal):
         return float(obj)
-    raise obj
+    return obj
 
 
 def set_data(loc, prop, feature):

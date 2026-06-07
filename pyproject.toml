@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "irish-census"
-version = "0.0.1"
+version = "0.0.2"
 description = "Interact with the Irish census data for small areas"
 authors = ["ExtendedPPR <extendedppr@gmail.com>"]
 readme = "README.md"
 packages = [{include="irish_census", from="src"}]
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.13"
+python = ">=3.10,<3.14"
 requests = "2.33.1"
 progressbar2 = "4.5.0"
 orjson = "3.11.8"
@@ -17,8 +17,12 @@ cached_property = "2.0.1"
 ijson = "3.5.0"
 
 [tool.poetry.group.test.dependencies]
-pytest = "^8.2.0"
+pytest = "9.0.3"
 mock = "5.2.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest-cov = "^7.1.0"
 
 [build-system]
 requires = ["poetry-core"]

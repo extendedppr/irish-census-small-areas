@@ -510,3 +510,91 @@ class SmallAreasTest(TestCase):
         self.assertEqual(
             len(small_areas.get_around_point(0.601, 0.601, radius_km=100)), 1
         )
+
+    def test_to_dict(self):
+        geojson = {
+            "type": "Feature",
+            "id": 13949,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [0, 0],
+                        [1, 1],
+                        [0, 0],
+                    ]
+                ],
+            },
+            "properties": {
+                "OBJECTID": 1,
+                "COUNTY_ENGLISH": "DUBLIN",
+                "ED_ENGLISH": "DUBLIN SOMETHING",
+            },
+        }
+
+        area = SmallArea.parse(geojson)
+        small_areas = SmallAreas(geojson={"type": "FeatureCollection", "features": []})
+        small_areas._data = [area]
+
+        self.assertEqual(
+            small_areas.to_dict(),
+            {
+                "number_of_zones": 1,
+                "area_km2": 0.0,
+                "population_density": 0.0,
+                "total_population": 0,
+                "approx_mean_age": None,
+                "population": {"male": {}, "female": {}},
+                "marital_status": {"male": {}, "female": {}},
+                "households": {
+                    "persons_in_private_households": {},
+                    "private_households": {},
+                },
+                "social": {"male": {}, "female": {}},
+                "occupation": {"male": {}, "female": {}},
+                "migration": {
+                    "usually_resident_population_by_birthplace": {},
+                    "usually_resident_population_by_citizenship": {},
+                },
+                "ethnicity": {"usually_resident_population": {}},
+                "religion": {},
+                "housing_type": {"private_households": {}},
+                "housing_built_year": {
+                    "permanent_private_households": {},
+                    "number_of_persons_in_permanent_private_households": {},
+                },
+                "type_of_occupancy": {
+                    "number_of_persons_in_permanent_private_households": {},
+                    "permanent_private_households": {},
+                },
+            },
+        )
+
+    def test_get_item(self):
+        geojson = {
+            "type": "Feature",
+            "id": 13949,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [0, 0],
+                        [1, 1],
+                        [0, 0],
+                    ]
+                ],
+            },
+            "properties": {
+                "OBJECTID": 1,
+                "COUNTY_ENGLISH": "DUBLIN",
+                "ED_ENGLISH": "DUBLIN SOMETHING",
+            },
+        }
+
+        area = SmallArea.parse(geojson)
+        small_areas = SmallAreas(geojson={"type": "FeatureCollection", "features": []})
+        small_areas._data = [area]
+
+        small_areas[0]
+        with self.assertRaises(IndexError):
+            small_areas[1]

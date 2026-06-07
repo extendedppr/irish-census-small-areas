@@ -220,7 +220,7 @@ class SmallAreas:
         return {
             "number_of_zones": len(self),
             "area_km2": area,
-            "population_density": total_population / area,
+            "population_density": total_population / area if area else area,
             "total_population": total_population,
             "approx_mean_age": statistics.mean([p.approx_mean_age for p in populations])
             if populations

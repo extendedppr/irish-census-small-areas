@@ -29,7 +29,7 @@ poetry run download --type occupations
 When specifying a radius around a point this will use all small areas whose centers are within the radius, not all areas that are within the radius.
 
 ```bash
-$ poetry run get_stats_around_area --lat 53.5 --lng -6.5 --radius-km 5
+poetry run get_stats_around_area --lat 53.5 --lng -6.5 --radius-km 5
 ```
 
 
